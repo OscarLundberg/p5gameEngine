@@ -324,7 +324,7 @@ function rigidbody()
 }
 
 ///<summary>Returns a physics object that will never move.</summary>
-function static()
+function statObj()
 {
 
 
