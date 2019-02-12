@@ -1,197 +1,263 @@
+/** @test {MyClass} */
+//describe('MyClass is super useful class.', ()=>{
+
+  /** @test {MyClass#sayMyName} */
+//  it('say my name', ()=>{
+//    let foo = new MyClass('Alice');
+//    assert.equal(foo.sayMyName(), 'My name is Alice');
+//  })
+//});
+
+
+/**
+ * Transform
+ */
 class Transform
 {
-  constructor(x, y, w, h, xr, yr)
-  {
-    this.x = x;
-    this.y = y;
-    this.w = w;
-    this.h = h;
-    this.rotationX = xr;
-    this.rotationY = yr;
-  }
+	constructor(x, y, w, h, xr, yr)
+	{
+		this.x = x;
+		this.y = y;
+		this.w = w;
+		this.h = h;
+		this.rotationX = xr;
+		this.rotationY = yr;
+	}
+	/**
+	 * sub
+	 */
+	static sub = function(a, b)
+	{
+		return new Transform(
+			a.x - b.x,
+			a.y - b.y,
+			a.w,
+			a.h,
+			a.rotationX - b.rotationX,
+			a.rotationY - b.rotationY
+		);
+	}
+	/**
+	 * add
+	 */
+	static add = function(a, b)
+	{
+		return new Transform(
+			a.x + b.x,
+			a.y + b.y,
+			a.w,
+			a.h,
+			a.rotationX + b.rotationX,
+			a.rotationY + b.rotationY
+		);
+	}
+	/**
+	 * mult
+	 */
+	static mult = function(a, b)
+	{
+		return new Transform(
+			a.x * b.x,
+			a.y * b.y,
+			a.w,
+			a.h,
+			a.rotationX * b.rotationX,
+			a.rotationY * b.rotationY
+		);
+	}
 
-  static sub = function(a, b)
-  {
-    return new Transform(
-      a.x - b.x,                  //X
-      a.y - b.y,                  //Y
-      a.w,                        //W
-      a.h,                        //H
-      a.rotationX - b.rotationX,  //RotX
-      a.rotationY - b.rotationY   //RotY
-    );
-  }
+	/**
+	 * div
+	 */
+	static div = function(a, b)
+	{
+		return new Transform(
+			a.x / b.x,
+			a.y / b.y,
+			a.w,
+			a.h,
+			a.rotationX / b.rotationX,
+			a.rotationY / b.rotationY
+		);
+	}
 
-  static add = function(a, b)
-  {
-    return new Transform(
-      a.x + b.x,                  //X
-      a.y + b.y,                  //Y
-      a.w,                        //W
-      a.h,                        //H
-      a.rotationX + b.rotationX,  //RotX
-      a.rotationY + b.rotationY   //RotY
-    );
-  }
+	/**
+	 * scl
+	 */
+	static scl = function(a, b)
+	{
+		return new Transform(
+			a.x * b,
+			a.y * b,
+			a.w * b,
+			a.h * b,
+			a.rotationX,
+			a.rotationY
+		);
+	}
 
-  static mult = function(a, b)
-  {
-    return new Transform(
-      a.x * b.x,                  //X
-      a.y * b.y,                  //Y
-      a.w,                        //W
-      a.h,                        //H
-      a.rotationX * b.rotationX,  //RotX
-      a.rotationY * b.rotationY   //RotY
-    );
-  }
-
-  static div = function(a, b)
-  {
-    return new Transform(
-      a.x / b.x,                  //X
-      a.y / b.y,                  //Y
-      a.w,                        //W
-      a.h,                        //H
-      a.rotationX / b.rotationX,  //RotX
-      a.rotationY / b.rotationY   //RotY
-    );
-  }
-
-  static scl = function(a, b)
-  {
-    return new Transform(
-      a.x * b,      //X
-      a.y * b,      //Y
-      a.w * b,      //W
-      a.h * b,      //H
-      a.rotationX,  //RotX
-      a.rotationY   //RotY
-    );
-  }
-
-  static zero = function()
-  {
-    return new Transform(0, 0, 0, 0, 0, 0);
-  }
+	/**
+	 * zero
+	 */
+	static zero = function()
+	{
+		return new Transform(0, 0, 0, 0, 0, 0);
+	}
 
 }
 
+/**
+ * GameObject
+ */
 class GameObject
 {
-  constructor(transform, physics, sprite, tag)
-  {
-      this.transform = transform;
-      this.sprite;
-      this.tag = tag;
+	constructor(transform, physics, sprite, tag)
+	{
+		this.transform = transform;
+		this.sprite;
+		this.tag = tag;
 
-      this.render = function() {
-        var pos = worldToScreenPoint(this.transform);
-        if(this.sprite)
-        {
-          image(this.sprite, pos.x, pos.y, w, h);
-        }else
-        {
+		this.render = function()
+		{
+			var pos = worldToScreenPoint(this.transform);
+			if (this.sprite)
+			{
+				image(this.sprite, pos.x, pos.y, w, h);
+			}
+			else
+			{
 
-          rect(pos.x, pos.y, transform.w, transform.h);
-        }
+				rect(pos.x, pos.y, transform.w, transform.h);
+			}
 
-      }
-  }
+		}
+	}
 }
 
+
+/**
+ * Actor
+ */
 class Actor extends GameObject
 {
-  constructor()
-  {
+	constructor()
+	{
 
-      this.move = function()
-      {
+		this.move = function() {
 
-      }
+		}
 
-      this.animate = function()
-      {
+		this.animate = function() {
 
-      }
+		}
 
-  }
+	}
 
 }
 
+
+/**
+ * Player
+ */
 class Player extends Actor
 {
-  constructor(){}
+	constructor()
+	{}
 }
 
+
+/**
+ * Camera
+ */
 class Camera extends GameObject
 {
 
 }
 
+
+/**
+ * Scene
+ */
 class Scene
 {
 
-  constructor()
-  {
-    this.gameObjects = [];
-    this.camera = new Camera(Transform.zero());
-    this.addObject = function(obj, name)
-    {
-      this.gameObjects.push(obj);
-    }
-  }
+	constructor()
+	{
+		this.gameObjects = [];
+		this.camera = new Camera(Transform.zero());
+		this.addObject = function(obj, name)
+		{
+			this.gameObjects.push(obj);
+		}
+	}
 
 
-//Body
+	//Body
 }
 
 
+
+/**
+ * Find
+ */
 function find(tag)
 {
-  return currentScene.gameObjects[tag] || null;
+	return currentScene.gameObjects[tag] || null;
 }
 
 let currentScene;
 // let update;
 
+
+/**
+ * Game
+ */
 function game()
 {
-  background(120);
-  currentScene = new Scene();
-  gameDraw = function()
-  {
-    if(currentScene.gameObjects.length > 0)
-    {
-      for(g of currentScene.gameObjects)
-      {
-        g.render();
-      }
-    }
-  }
-  // earlyUpdate = function() {};
-  // update = function() {};
-  // lateUpdate = function() {};
+	background(120);
+	currentScene = new Scene();
+	gameDraw = function()
+	{
+		if (currentScene.gameObjects.length > 0)
+		{
+			for (g of currentScene.gameObjects)
+			{
+				g.render();
+			}
+		}
+	}
+	// earlyUpdate = function() {};
+	// update = function() {};
+	// lateUpdate = function() {};
 }
 
+
+/**
+ * Draw
+ */
 function draw()
 {
 
-  update();
-  gameDraw();
-  // earlyUpdate();
+	update();
+	gameDraw();
+	// earlyUpdate();
 
 
-  // lateUpdate();
+	// lateUpdate();
 }
 
 
+
+/**
+ * GameObject
+ */
 function gameObject(x, y, w = 10, h = 10, tag = "gameObject" + currentScene.gameObjects.length, physics = kinematic(), sprite = undefined)
 {
-  var tr = new Transform(x, y, w, h, 0, 0);
-  console.log(tr);
-  currentScene.addObject(new GameObject(tr, physics, sprite, tag));
+	var tr = new Transform(x, y, w, h, 0, 0);
+	console.log(tr);
+	currentScene.addObject(new GameObject(tr, physics, sprite, tag));
 }
+
 
 function actor()
 {
@@ -206,25 +272,28 @@ function player(x, y, physics = rigidbody(), sprite = undefined, controlScheme =
 
 function moveCamera(x, y, cameraMode = CENTER)
 {
-  if(cameraMode == CENTER)
-  {
-    currentScene.camera.transform.x += x;
-    currentScene.camera.transform.y += y;
-  }else if(cameraMode == TOPLEFT)
-  {
-    currentScene.camera.x = x;
-    currentScene.camera.y = y;
-  }else if(cameraMode == STATIC)
-  {
-    return;
-  }
+	if (cameraMode == CENTER)
+	{
+		currentScene.camera.transform.x += x;
+		currentScene.camera.transform.y += y;
+	}
+	else if (cameraMode == TOPLEFT)
+	{
+		currentScene.camera.x = x;
+		currentScene.camera.y = y;
+	}
+	else if (cameraMode == STATIC)
+	{
+		return;
+	}
 }
 
 
 class Physics
 {
-  constructor(){}
-//Body
+	constructor()
+	{}
+	//Body
 }
 class ControlScheme
 {
@@ -265,6 +334,6 @@ function static()
 
 function worldToScreenPoint(transform, camera = currentScene.camera)
 {
-  return Transform.sub(transform, camera.transform);
+	return Transform.sub(transform, camera.transform);
 
 }
