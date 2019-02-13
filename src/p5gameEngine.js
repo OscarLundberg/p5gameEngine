@@ -1,14 +1,3 @@
-/** @test {MyClass} */
-//describe('MyClass is super useful class.', ()=>{
-
-  /** @test {MyClass#sayMyName} */
-//  it('say my name', ()=>{
-//    let foo = new MyClass('Alice');
-//    assert.equal(foo.sayMyName(), 'My name is Alice');
-//  })
-//});
-
-
 /**
  * Transform
  */
@@ -270,68 +259,156 @@ function player(x, y, physics = rigidbody(), sprite = undefined, controlScheme =
 
 }
 
-function moveCamera(x, y, cameraMode = CENTER)
+/**
+ * Move the camera by X, Y
+ * @param {X} X-coordinate
+ * @param {Y} Y-coordinate
+ */
+function moveCamera(x, y) //, cameraMode = CENTER)
 {
-	if (cameraMode == CENTER)
-	{
+	// if (cameraMode == CENTER)
+	// {
 		currentScene.camera.transform.x += x;
 		currentScene.camera.transform.y += y;
-	}
-	else if (cameraMode == TOPLEFT)
-	{
-		currentScene.camera.x = x;
-		currentScene.camera.y = y;
-	}
-	else if (cameraMode == STATIC)
-	{
-		return;
-	}
+	// }
+	// else if (cameraMode == TOPLEFT)
+	// {
+	// 	currentScene.camera.x = x;
+	// 	currentScene.camera.y = y;
+	// }
+	// else if (cameraMode == STATIC)
+	// {
+	// 	return;
+	// }
 }
 
 
+/**
+ * Physics configuration of GameObjects
+ */
 class Physics
 {
-	constructor()
-	{}
-	//Body
+
+	constructor(mass, gravityScale)
+	{
+		this.mass = mass;
+		this.gravityScale = gravityScale;
+
+		this.force = [0, 0];
+
+		/**
+		 * Apply force to a physics object
+		 * @param {x} X-coordinate
+		 * @param {y} Y-coordinate
+		 * @param {m} Magnitude
+		 */
+		this.applyForce = function(x, y, m)
+		{
+
+		}
+
+		this.step = function ()
+		{
+
+
+		}
+	}
+	/**
+	 * Global gravity force. (Applied to every rigidbody)
+   */
+	 static gravity = 9.87;
+
+	/**
+	 * @returns physics object that ignores all external forces
+	 * Note: Kinematic objects are affected by internal forces
+	 * @example {
+	 * myGameObject.physics = Physics.kinematic()
+	 * myGameObject.physics.applyForce(1, 0, 10) // Object is affected
+	 * }
+	 */
+	static kinematic = function()
+	{
+
+	}
+
+
+	/**
+	 * @returns physics object that is affected by external forces
+	 */
+	static rigidbody = function()
+	{
+
+	}
+
+	/**
+	 * @returns a static physics object that is not affected by forces.
+	 */
+	static statObj = function()
+	{
+
+
+	}
+
 }
+
+
+/**
+ * Control scheme for player objects
+ */
 class ControlScheme
 {
 
+	/**
+	 * @returns standard WASD control scheme
+	 * @example {
+	 *	// W = Directional, Up
+	 *  // A = Directional, Left
+	 *  // S = Directional, Down
+	 *  // D = Directional, Right
+	 *  // LShift = Button, B
+	 * 	// Space = Button, A
+	 * }
+	 * @param{directionalOnly} only includes directional buttons. Default = false
+	 * @param{horizontalOnly} only includes horizontal directional buttons. Default = false
+	 * @param{verticalOnly} only includes verticalOnly directional buttons. Default = false
+	 */
+	static wasd = function(directionalOnly, horizontalOnly, verticalOnly)
+	{
+
+	}
+
+	/**
+	 * @returns arrow keys control scheme
+	 * @example {
+	 *	// Up = Directional, Up
+	 *  // Left = Directional, Left
+	 *  // Down = Directional, Down
+	 *  // Right = Directional, Right
+	 *  // LShift = Button, B
+	 * 	// Space = Button, A
+	 * }
+	 * @param{directionalOnly} only includes directional buttons. Default = false
+	 * @param{horizontalOnly} only includes horizontal directional buttons. Default = false
+	 * @param{verticalOnly} only includes verticalOnly directional buttons. Default = false
+	 */
+	static arrows = function(directionalOnly, horizontalOnly, verticalOnly)
+	{
+
+	}
+
+
 }
 
-function wasd(directionalOnly, horizontalOnly, verticalOnly)
-{
-
-}
-
-function arrows(directionalOnly, horizontalOnly, verticalOnly)
-{
-
-}
-
-///<summary>Returns physics object that ignores all external forces.</summary>
-function kinematic()
-{
-
-}
-
-
-///<summary>Returns a default physics object that acts upon all forces.</summary>
-function rigidbody()
-{
-
-}
-
-///<summary>Returns a physics object that will never move.</summary>
-function statObj()
-{
-
-
-}
 
 
 
+
+
+/**
+ * @returns The screen position of a world coordinate relative to a given camera,
+ * @param{transform} The world point to calculate
+ * @param{camera} The camera to calculate screen point relative to. Default=currentScene.camera
+ */
 function worldToScreenPoint(transform, camera = currentScene.camera)
 {
 	return Transform.sub(transform, camera.transform);
