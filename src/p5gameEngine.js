@@ -1,5 +1,11 @@
 /**
  * Transform
+ * @param{float} x X coordinate in world space
+ * @param{float} y Y coordinate in world space
+ * @param{float} w Width in pixels
+ * @param{float} h Height in pixels
+ * @param{float} rotationX X-Rotation in degrees
+ * @param{float} rotationY Y-Rotation in degrees
  */
 class Transform
 {
@@ -13,7 +19,9 @@ class Transform
 		this.rotationY = yr;
 	}
 	/**
-	 * sub
+   * @returns Transform a - Transform b
+	 * @param{Transform} a
+	 * @param{Transform} b
 	 */
 	static sub = function(a, b)
 	{
@@ -27,7 +35,9 @@ class Transform
 		);
 	}
 	/**
-	 * add
+   * @returns Transform a + Transform b
+	 * @param{Transform} a
+	 * @param{Transform} b
 	 */
 	static add = function(a, b)
 	{
@@ -41,7 +51,9 @@ class Transform
 		);
 	}
 	/**
-	 * mult
+	 * @returns Transform a multiplied by Transform b
+	 * @param{Transform} a
+	 * @param{Transform} b
 	 */
 	static mult = function(a, b)
 	{
@@ -56,7 +68,9 @@ class Transform
 	}
 
 	/**
-	 * div
+	 * @returns Transform a divided by Transform b
+	 * @param{Transform} a
+	 * @param{Transform} b
 	 */
 	static div = function(a, b)
 	{
@@ -71,7 +85,9 @@ class Transform
 	}
 
 	/**
-	 * scl
+	 * @returns Transform a scaled by float b
+	 * @param{Transform} a
+	 * @param{float} b
 	 */
 	static scl = function(a, b)
 	{
@@ -86,7 +102,7 @@ class Transform
 	}
 
 	/**
-	 * zero
+	 * @returns Zero-initialized Transform
 	 */
 	static zero = function()
 	{
@@ -96,7 +112,11 @@ class Transform
 }
 
 /**
- * GameObject
+ * GameObject. Base class for all objects. Useful for inanimate objects.
+ * @param{Transform} transform
+ * @param{Physics} physics The GameObjects physics configuration
+ * @param{string} sprite The gameobjects sprite filename. (Note: All sprites must be added to the /Sprites folder)
+ * @param{string} tag
  */
 class GameObject
 {
@@ -106,6 +126,9 @@ class GameObject
 		this.sprite;
 		this.tag = tag;
 
+		/**
+		 *	Renders the GameObject to the screen. Called every frame.
+		 */
 		this.render = function()
 		{
 			var pos = worldToScreenPoint(this.transform);
@@ -125,18 +148,29 @@ class GameObject
 
 
 /**
- * Actor
+ * GameObject with built-in functions for movement and animation.
+ * <br>Useful for non-player characters & animated objects.
  */
 class Actor extends GameObject
 {
 	constructor()
 	{
 
-		this.move = function() {
+		/**
+		 * Move the actor.
+		 * @param {float} x X value
+		 * @param {float} y X value
+		 * @param {float} s Speed
+		 */
+		this.move = function(x, y, s) {
 
 		}
 
-		this.animate = function() {
+		/**
+		 * Advance the actor animation by n frames
+		 * @param {int} n Frame count
+		 */
+		this.animate = function(n = 1) {
 
 		}
 
@@ -146,7 +180,8 @@ class Actor extends GameObject
 
 
 /**
- * Player
+ * Player with built-in functions for user controlled movement and animation.
+ * Used only for characters controlled by human. For AI/CPU characters, see Actor
  */
 class Player extends Actor
 {
@@ -301,9 +336,9 @@ class Physics
 
 		/**
 		 * Apply force to a physics object
-		 * @param {X-coordinate} x
-		 * @param {Y-coordinate} y
-		 * @param {Magnitude} m
+		 * @param {float} x
+		 * @param {float} y
+		 * @param {float} m
 		 */
 		this.applyForce = function(x, y, m)
 		{
@@ -311,10 +346,7 @@ class Physics
 		}
 
 		/**
-		 * Apply force to a physics object
-		 * @param {X-coordinate} x
-		 * @param {Y-coordinate} y
-		 * @param {Magnitude} m
+		 * Advance the physics object to the next physics step (Called automatically every step)
 		 */
 		this.step = function ()
 		{
@@ -324,7 +356,7 @@ class Physics
 	}
 	/**
 	 * Global gravity force. (Applied to every rigidbody)
-	 * \nDefault is 9.87
+	 * <br>Default is 9.87
    */
 	 static gravity = 9.87;
 
@@ -332,7 +364,7 @@ class Physics
 	 * @returns physics object that ignores all external forces
 	 * Note: Kinematic objects are affected by internal forces
 	 * @example {
-	 * 	myGameObject.physics = Physics.kinematic()
+	 * 	myGameObject.physics = Physics.kinematic() // Set myGameObject as kinematic
 	 * 	myGameObject.physics.applyForce(1, 0, 10) // Object is affected
 	 * }
 	 */
@@ -369,18 +401,20 @@ class ControlScheme
 {
 
 	/**
-	 * @returns standard WASD control scheme
-	 * @example {
+	 * @returns standard WASD control scheme. This is the default value for Player objects.
+	 * @example
+	 * {
+	 *	playerFoo.controlScheme = ControlScheme.wasd();
 	 *	// W = Directional, Up
-	 *  // A = Directional, Left
-	 *  // S = Directional, Down
-	 *  // D = Directional, Right
-	 *  // LShift = Button, B
-	 * 	// Space = Button, A
+	 *	// A = Directional, Left
+	 *	// S = Directional, Down
+	 *	// D = Directional, Right
+	 *	// LShift = Button, B
+	 *	// Space = Button, A
 	 * }
-	 * @param{directionalOnly} directionalOnly Only directional buttons. Default = false
-	 * @param{horizontalOnly} horizontalOnly Only horizontal directional buttons. Default = false
-	 * @param{verticalOnly} verticalOnly Only vertical directional buttons. Default = false
+	 * @param{boolean} directionalOnly Only directional buttons. Default = false
+	 * @param{boolean} horizontalOnly Only horizontal directional buttons. Default = false
+	 * @param{boolean} verticalOnly Only vertical directional buttons. Default = false
 	 */
 	static wasd = function(directionalOnly, horizontalOnly, verticalOnly)
 	{
@@ -389,17 +423,19 @@ class ControlScheme
 
 	/**
 	 * @returns arrow keys control scheme
-	 * @example {
+	 * @example
+	 * {
+	 *	playerFoo.controlScheme = ControlScheme.arrows();
 	 *	// Up = Directional, Up
-	 *  // Left = Directional, Left
-	 *  // Down = Directional, Down
-	 *  // Right = Directional, Right
-	 *  // LShift = Button, B
-	 * 	// Space = Button, A
+	 *	// Left = Directional, Left
+	 *	// Down = Directional, Down
+	 *	// Right = Directional, Right
+	 *	// LShift = Button, B
+	 *	// Space = Button, A
 	 * }
-	 * @param{directionalOnly} directionalOnly Only directional buttons. Default = false
-	 * @param{horizontalOnly} horizontalOnly Only horizontal directional buttons. Default = false
-	 * @param{verticalOnly} verticalOnly Only vertical directional buttons. Default = false
+	 * @param{boolean} directionalOnly Only directional buttons. Default = false
+	 * @param{boolean} horizontalOnly Only horizontal directional buttons. Default = false
+	 * @param{boolean} verticalOnly Only vertical directional buttons. Default = false
 	 */
 	static arrows = function(directionalOnly, horizontalOnly, verticalOnly)
 	{
@@ -416,8 +452,8 @@ class ControlScheme
 
 /**
  * @returns The screen position of a world coordinate relative to a given camera.
- * @param{transform} transform The world point to calculate.
- * @param{camera} camera The camera to calculate screen point relative to. Default = currentScene.camera
+ * @param{Transform} transform The world point to calculate.
+ * @param{GameObject} camera The camera to calculate screen point relative to. Default = currentScene.camera
  */
 function worldToScreenPoint(transform, camera = currentScene.camera)
 {

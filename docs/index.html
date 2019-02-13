@@ -84,20 +84,62 @@
                 
                 <li><a
                   href='#gameobject'
-                  class="">
+                  class=" toggle-sibling">
                   GameObject
-                  
+                  <span class='icon'>▸</span>
                 </a>
+                
+                <div class='toggle-target display-none'>
+                  
+                  
+                    <ul class='list-reset py1-ul pl1'>
+                      <li class='h5'><span>Instance members</span></li>
+                      
+                      <li><a
+                        href='#gameobjectrender'
+                        class='regular pre-open'>
+                        #render
+                      </a></li>
+                      
+                    </ul>
+                  
+                  
+                  
+                </div>
                 
                 </li>
               
                 
                 <li><a
                   href='#actor'
-                  class="">
+                  class=" toggle-sibling">
                   Actor
-                  
+                  <span class='icon'>▸</span>
                 </a>
+                
+                <div class='toggle-target display-none'>
+                  
+                  
+                    <ul class='list-reset py1-ul pl1'>
+                      <li class='h5'><span>Instance members</span></li>
+                      
+                      <li><a
+                        href='#actormove'
+                        class='regular pre-open'>
+                        #move
+                      </a></li>
+                      
+                      <li><a
+                        href='#actoranimate'
+                        class='regular pre-open'>
+                        #animate
+                      </a></li>
+                      
+                    </ul>
+                  
+                  
+                  
+                </div>
                 
                 </li>
               
@@ -321,7 +363,7 @@
 
  
   
-    <div class='pre p1 fill-light mt0'>new Transform(x: any, y: any, w: any, h: any, xr: any, yr: any)</div>
+    <div class='pre p1 fill-light mt0'>new Transform(x: float, y: float, w: float, h: float, xr: any, yr: any, rotationX: float, rotationY: float)</div>
    
   
   
@@ -339,32 +381,36 @@
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>x</span> <code class='quiet'>(any)</code>
-	    
+            <span class='code bold'>x</span> <code class='quiet'>(float)</code>
+	    X coordinate in world space
+
           </div>
           
         </div>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>y</span> <code class='quiet'>(any)</code>
-	    
+            <span class='code bold'>y</span> <code class='quiet'>(float)</code>
+	    Y coordinate in world space
+
           </div>
           
         </div>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>w</span> <code class='quiet'>(any)</code>
-	    
+            <span class='code bold'>w</span> <code class='quiet'>(float)</code>
+	    Width in pixels
+
           </div>
           
         </div>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>h</span> <code class='quiet'>(any)</code>
-	    
+            <span class='code bold'>h</span> <code class='quiet'>(float)</code>
+	    Height in pixels
+
           </div>
           
         </div>
@@ -381,6 +427,24 @@
           <div>
             <span class='code bold'>yr</span> <code class='quiet'>(any)</code>
 	    
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>rotationX</span> <code class='quiet'>(float)</code>
+	    X-Rotation in degrees
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>rotationY</span> <code class='quiet'>(float)</code>
+	    Y-Rotation in degrees
+
           </div>
           
         </div>
@@ -412,8 +476,7 @@
 
   
 
-  <p>sub</p>
-
+  
  
   
     <div class='pre p1 fill-light mt0'>sub</div>
@@ -434,7 +497,7 @@
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>a</span> <code class='quiet'>(any)</code>
+            <span class='code bold'>a</span> <code class='quiet'>(<a href="#transform">Transform</a>)</code>
 	    
           </div>
           
@@ -442,7 +505,7 @@
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>b</span> <code class='quiet'>(any)</code>
+            <span class='code bold'>b</span> <code class='quiet'>(<a href="#transform">Transform</a>)</code>
 	    
           </div>
           
@@ -453,6 +516,14 @@
 
   
 
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code>any</code>:
+        Transform a - Transform b
+
+      
+    
   
 
   
@@ -481,8 +552,7 @@
 
   
 
-  <p>add</p>
-
+  
  
   
     <div class='pre p1 fill-light mt0'>add</div>
@@ -503,7 +573,7 @@
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>a</span> <code class='quiet'>(any)</code>
+            <span class='code bold'>a</span> <code class='quiet'>(<a href="#transform">Transform</a>)</code>
 	    
           </div>
           
@@ -511,7 +581,7 @@
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>b</span> <code class='quiet'>(any)</code>
+            <span class='code bold'>b</span> <code class='quiet'>(<a href="#transform">Transform</a>)</code>
 	    
           </div>
           
@@ -522,6 +592,14 @@
 
   
 
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code>any</code>:
+        Transform a + Transform b
+
+      
+    
   
 
   
@@ -550,8 +628,7 @@
 
   
 
-  <p>mult</p>
-
+  
  
   
     <div class='pre p1 fill-light mt0'>mult</div>
@@ -572,7 +649,7 @@
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>a</span> <code class='quiet'>(any)</code>
+            <span class='code bold'>a</span> <code class='quiet'>(<a href="#transform">Transform</a>)</code>
 	    
           </div>
           
@@ -580,7 +657,7 @@
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>b</span> <code class='quiet'>(any)</code>
+            <span class='code bold'>b</span> <code class='quiet'>(<a href="#transform">Transform</a>)</code>
 	    
           </div>
           
@@ -591,6 +668,14 @@
 
   
 
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code>any</code>:
+        Transform a multiplied by Transform b
+
+      
+    
   
 
   
@@ -619,8 +704,7 @@
 
   
 
-  <p>div</p>
-
+  
  
   
     <div class='pre p1 fill-light mt0'>div</div>
@@ -641,7 +725,7 @@
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>a</span> <code class='quiet'>(any)</code>
+            <span class='code bold'>a</span> <code class='quiet'>(<a href="#transform">Transform</a>)</code>
 	    
           </div>
           
@@ -649,7 +733,7 @@
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>b</span> <code class='quiet'>(any)</code>
+            <span class='code bold'>b</span> <code class='quiet'>(<a href="#transform">Transform</a>)</code>
 	    
           </div>
           
@@ -660,6 +744,14 @@
 
   
 
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code>any</code>:
+        Transform a divided by Transform b
+
+      
+    
   
 
   
@@ -688,8 +780,7 @@
 
   
 
-  <p>scl</p>
-
+  
  
   
     <div class='pre p1 fill-light mt0'>scl</div>
@@ -710,7 +801,7 @@
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>a</span> <code class='quiet'>(any)</code>
+            <span class='code bold'>a</span> <code class='quiet'>(<a href="#transform">Transform</a>)</code>
 	    
           </div>
           
@@ -718,7 +809,7 @@
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>b</span> <code class='quiet'>(any)</code>
+            <span class='code bold'>b</span> <code class='quiet'>(float)</code>
 	    
           </div>
           
@@ -729,6 +820,14 @@
 
   
 
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code>any</code>:
+        Transform a scaled by float b
+
+      
+    
   
 
   
@@ -757,8 +856,7 @@
 
   
 
-  <p>zero</p>
-
+  
  
   
     <div class='pre p1 fill-light mt0'>zero</div>
@@ -777,6 +875,14 @@
 
   
 
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code>any</code>:
+        Zero-initialized Transform
+
+      
+    
   
 
   
@@ -817,11 +923,11 @@
   </div>
   
 
-  <p>GameObject</p>
+  <p>GameObject. Base class for all objects. Useful for inanimate objects.</p>
 
  
   
-    <div class='pre p1 fill-light mt0'>new GameObject(transform: any, physics: any, sprite: any, tag: any)</div>
+    <div class='pre p1 fill-light mt0'>new GameObject(transform: <a href="#transform">Transform</a>, physics: <a href="#physics">Physics</a>, sprite: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>, tag: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</div>
    
   
   
@@ -839,7 +945,7 @@
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>transform</span> <code class='quiet'>(any)</code>
+            <span class='code bold'>transform</span> <code class='quiet'>(<a href="#transform">Transform</a>)</code>
 	    
           </div>
           
@@ -847,23 +953,25 @@
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>physics</span> <code class='quiet'>(any)</code>
-	    
+            <span class='code bold'>physics</span> <code class='quiet'>(<a href="#physics">Physics</a>)</code>
+	    The GameObjects physics configuration
+
           </div>
           
         </div>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>sprite</span> <code class='quiet'>(any)</code>
-	    
+            <span class='code bold'>sprite</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
+	    The gameobjects sprite filename. (Note: All sprites must be added to the /Sprites folder)
+
           </div>
           
         </div>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>tag</span> <code class='quiet'>(any)</code>
+            <span class='code bold'>tag</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
 	    
           </div>
           
@@ -881,6 +989,60 @@
   
 
   
+
+  
+    <div class='py1 quiet mt1 prose-big'>Instance Members</div>
+    <div class="clearfix">
+  
+    <div class='border-bottom' id='gameobjectrender'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>render()</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+
+  <p>Renders the GameObject to the screen. Called every frame.</p>
+
+ 
+  
+    <div class='pre p1 fill-light mt0'>render()</div>
+   
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+</div>
 
   
 
@@ -902,7 +1064,8 @@
   </div>
   
 
-  <p>Actor</p>
+  <p>GameObject with built-in functions for movement and animation.
+<br>Useful for non-player characters &#x26; animated objects.</p>
 
  
   
@@ -938,6 +1101,155 @@
   
 
   
+    <div class='py1 quiet mt1 prose-big'>Instance Members</div>
+    <div class="clearfix">
+  
+    <div class='border-bottom' id='actormove'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>move(x, y, s)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+
+  <p>Move the actor.</p>
+
+ 
+  
+    <div class='pre p1 fill-light mt0'>move(x: float, y: float, s: float)</div>
+   
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>x</span> <code class='quiet'>(float)</code>
+	    X value
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>y</span> <code class='quiet'>(float)</code>
+	    X value
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>s</span> <code class='quiet'>(float)</code>
+	    Speed
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='actoranimate'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>animate(n)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+
+  <p>Advance the actor animation by n frames</p>
+
+ 
+  
+    <div class='pre p1 fill-light mt0'>animate(n: int)</div>
+   
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>n</span> <code class='quiet'>(int
+            = <code>1</code>)</code>
+	    Frame count
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+</div>
+
+  
 
   
 </section>
@@ -957,7 +1269,8 @@
   </div>
   
 
-  <p>Player</p>
+  <p>Player with built-in functions for user controlled movement and animation.
+Used only for characters controlled by human. For AI/CPU characters, see Actor</p>
 
  
   
@@ -1535,7 +1848,7 @@
   
 
   <p>Global gravity force. (Applied to every rigidbody)
-\nDefault is 9.87</p>
+<br>Default is 9.87</p>
 
  
   
@@ -1620,7 +1933,7 @@ Note: Kinematic objects are affected by internal forces
     
       
       <pre class='p1 overflow-auto round fill-light'>{
-	myGameObject.physics = Physics.kinematic()
+	myGameObject.physics = Physics.kinematic() <span class="hljs-comment">// Set myGameObject as kinematic</span>
 	myGameObject.physics.applyForce(<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">10</span>) <span class="hljs-comment">// Object is affected</span>
 }</pre>
     
@@ -1818,7 +2131,7 @@ Note: Kinematic objects are affected by internal forces
 
  
   
-    <div class='pre p1 fill-light mt0'>applyForce(x: X-coordinate, y: Y-coordinate, m: Magnitude)</div>
+    <div class='pre p1 fill-light mt0'>applyForce(x: float, y: float, m: float)</div>
    
   
   
@@ -1836,7 +2149,7 @@ Note: Kinematic objects are affected by internal forces
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>x</span> <code class='quiet'>(X-coordinate)</code>
+            <span class='code bold'>x</span> <code class='quiet'>(float)</code>
 	    
           </div>
           
@@ -1844,7 +2157,7 @@ Note: Kinematic objects are affected by internal forces
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>y</span> <code class='quiet'>(Y-coordinate)</code>
+            <span class='code bold'>y</span> <code class='quiet'>(float)</code>
 	    
           </div>
           
@@ -1852,7 +2165,7 @@ Note: Kinematic objects are affected by internal forces
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>m</span> <code class='quiet'>(Magnitude)</code>
+            <span class='code bold'>m</span> <code class='quiet'>(float)</code>
 	    
           </div>
           
@@ -1883,7 +2196,7 @@ Note: Kinematic objects are affected by internal forces
       <div class="clearfix small pointer toggle-sibling">
         <div class="py1 contain">
             <a class='icon pin-right py1 dark-link caret-right'>▸</a>
-            <span class='code strong strong truncate'>step(x, y, m)</span>
+            <span class='code strong strong truncate'>step()</span>
         </div>
       </div>
       <div class="clearfix display-none toggle-target">
@@ -1891,11 +2204,11 @@ Note: Kinematic objects are affected by internal forces
 
   
 
-  <p>Apply force to a physics object</p>
+  <p>Advance the physics object to the next physics step (Called automatically every step)</p>
 
  
   
-    <div class='pre p1 fill-light mt0'>step(x: X-coordinate, y: Y-coordinate, m: Magnitude)</div>
+    <div class='pre p1 fill-light mt0'>step()</div>
    
   
   
@@ -1907,35 +2220,6 @@ Note: Kinematic objects are affected by internal forces
   
   
 
-  
-    <div class='py1 quiet mt1 prose-big'>Parameters</div>
-    <div class='prose'>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>x</span> <code class='quiet'>(X-coordinate)</code>
-	    
-          </div>
-          
-        </div>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>y</span> <code class='quiet'>(Y-coordinate)</code>
-	    
-          </div>
-          
-        </div>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>m</span> <code class='quiet'>(Magnitude)</code>
-	    
-          </div>
-          
-        </div>
-      
-    </div>
   
 
   
@@ -2041,7 +2325,7 @@ Note: Kinematic objects are affected by internal forces
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>directionalOnly</span> <code class='quiet'>(directionalOnly)</code>
+            <span class='code bold'>directionalOnly</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a>)</code>
 	    Only directional buttons. Default = false
 
           </div>
@@ -2050,7 +2334,7 @@ Note: Kinematic objects are affected by internal forces
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>horizontalOnly</span> <code class='quiet'>(horizontalOnly)</code>
+            <span class='code bold'>horizontalOnly</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a>)</code>
 	    Only horizontal directional buttons. Default = false
 
           </div>
@@ -2059,7 +2343,7 @@ Note: Kinematic objects are affected by internal forces
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>verticalOnly</span> <code class='quiet'>(verticalOnly)</code>
+            <span class='code bold'>verticalOnly</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a>)</code>
 	    Only vertical directional buttons. Default = false
 
           </div>
@@ -2075,7 +2359,7 @@ Note: Kinematic objects are affected by internal forces
     
       <div class='py1 quiet mt1 prose-big'>Returns</div>
       <code>any</code>:
-        standard WASD control scheme
+        standard WASD control scheme. This is the default value for Player objects.
 
       
     
@@ -2088,12 +2372,13 @@ Note: Kinematic objects are affected by internal forces
     
       
       <pre class='p1 overflow-auto round fill-light'>{
+playerFoo.controlScheme = ControlScheme.wasd();
 <span class="hljs-comment">// W = Directional, Up</span>
- <span class="hljs-comment">// A = Directional, Left</span>
- <span class="hljs-comment">// S = Directional, Down</span>
- <span class="hljs-comment">// D = Directional, Right</span>
- <span class="hljs-comment">// LShift = Button, B</span>
-	<span class="hljs-comment">// Space = Button, A</span>
+<span class="hljs-comment">// A = Directional, Left</span>
+<span class="hljs-comment">// S = Directional, Down</span>
+<span class="hljs-comment">// D = Directional, Right</span>
+<span class="hljs-comment">// LShift = Button, B</span>
+<span class="hljs-comment">// Space = Button, A</span>
 }</pre>
     
   
@@ -2141,7 +2426,7 @@ Note: Kinematic objects are affected by internal forces
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>directionalOnly</span> <code class='quiet'>(directionalOnly)</code>
+            <span class='code bold'>directionalOnly</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a>)</code>
 	    Only directional buttons. Default = false
 
           </div>
@@ -2150,7 +2435,7 @@ Note: Kinematic objects are affected by internal forces
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>horizontalOnly</span> <code class='quiet'>(horizontalOnly)</code>
+            <span class='code bold'>horizontalOnly</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a>)</code>
 	    Only horizontal directional buttons. Default = false
 
           </div>
@@ -2159,7 +2444,7 @@ Note: Kinematic objects are affected by internal forces
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>verticalOnly</span> <code class='quiet'>(verticalOnly)</code>
+            <span class='code bold'>verticalOnly</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a>)</code>
 	    Only vertical directional buttons. Default = false
 
           </div>
@@ -2188,12 +2473,13 @@ Note: Kinematic objects are affected by internal forces
     
       
       <pre class='p1 overflow-auto round fill-light'>{
+playerFoo.controlScheme = ControlScheme.arrows();
 <span class="hljs-comment">// Up = Directional, Up</span>
- <span class="hljs-comment">// Left = Directional, Left</span>
- <span class="hljs-comment">// Down = Directional, Down</span>
- <span class="hljs-comment">// Right = Directional, Right</span>
- <span class="hljs-comment">// LShift = Button, B</span>
-	<span class="hljs-comment">// Space = Button, A</span>
+<span class="hljs-comment">// Left = Directional, Left</span>
+<span class="hljs-comment">// Down = Directional, Down</span>
+<span class="hljs-comment">// Right = Directional, Right</span>
+<span class="hljs-comment">// LShift = Button, B</span>
+<span class="hljs-comment">// Space = Button, A</span>
 }</pre>
     
   
@@ -2235,7 +2521,7 @@ Note: Kinematic objects are affected by internal forces
   
  
   
-    <div class='pre p1 fill-light mt0'>worldToScreenPoint(transform: transform, camera: camera): any</div>
+    <div class='pre p1 fill-light mt0'>worldToScreenPoint(transform: <a href="#transform">Transform</a>, camera: <a href="#gameobject">GameObject</a>): any</div>
    
   
   
@@ -2253,7 +2539,7 @@ Note: Kinematic objects are affected by internal forces
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>transform</span> <code class='quiet'>(transform)</code>
+            <span class='code bold'>transform</span> <code class='quiet'>(<a href="#transform">Transform</a>)</code>
 	    The world point to calculate.
 
           </div>
@@ -2262,7 +2548,7 @@ Note: Kinematic objects are affected by internal forces
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>camera</span> <code class='quiet'>(camera
+            <span class='code bold'>camera</span> <code class='quiet'>(<a href="#gameobject">GameObject</a>
             = <code>currentScene.camera</code>)</code>
 	    The camera to calculate screen point relative to. Default = currentScene.camera
 
