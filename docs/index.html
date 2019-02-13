@@ -225,9 +225,21 @@
                       <li class='h5'><span>Instance members</span></li>
                       
                       <li><a
+                        href='#physicsforce'
+                        class='regular pre-open'>
+                        #force
+                      </a></li>
+                      
+                      <li><a
                         href='#physicsapplyforce'
                         class='regular pre-open'>
                         #applyForce
+                      </a></li>
+                      
+                      <li><a
+                        href='#physicsstep'
+                        class='regular pre-open'>
+                        #step
                       </a></li>
                       
                     </ul>
@@ -1522,7 +1534,8 @@
 
   
 
-  <p>Global gravity force. (Applied to every rigidbody)</p>
+  <p>Global gravity force. (Applied to every rigidbody)
+\nDefault is 9.87</p>
 
  
   
@@ -1607,8 +1620,8 @@ Note: Kinematic objects are affected by internal forces
     
       
       <pre class='p1 overflow-auto round fill-light'>{
-myGameObject.physics = Physics.kinematic()
-myGameObject.physics.applyForce(<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">10</span>) <span class="hljs-comment">// Object is affected</span>
+	myGameObject.physics = Physics.kinematic()
+	myGameObject.physics.applyForce(<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">10</span>) <span class="hljs-comment">// Object is affected</span>
 }</pre>
     
   
@@ -1741,11 +1754,59 @@ myGameObject.physics.applyForce(<span class="hljs-number">1</span>, <span class=
     <div class='py1 quiet mt1 prose-big'>Instance Members</div>
     <div class="clearfix">
   
+    <div class='border-bottom' id='physicsforce'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>force</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+
+  <p>Force applied to the body in the current physics step.</p>
+
+ 
+  
+    <div class='pre p1 fill-light mt0'>force</div>
+   
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
     <div class='border-bottom' id='physicsapplyforce'>
       <div class="clearfix small pointer toggle-sibling">
         <div class="py1 contain">
             <a class='icon pin-right py1 dark-link caret-right'>▸</a>
-            <span class='code strong strong truncate'>applyForce(x, y, m, X-coordinate, Y-coordinate, Magnitude)</span>
+            <span class='code strong strong truncate'>applyForce(x, y, m)</span>
         </div>
       </div>
       <div class="clearfix display-none toggle-target">
@@ -1757,7 +1818,7 @@ myGameObject.physics.applyForce(<span class="hljs-number">1</span>, <span class=
 
  
   
-    <div class='pre p1 fill-light mt0'>applyForce(x: any, y: any, m: any, X-coordinate: x, Y-coordinate: y, Magnitude: m)</div>
+    <div class='pre p1 fill-light mt0'>applyForce(x: X-coordinate, y: Y-coordinate, m: Magnitude)</div>
    
   
   
@@ -1775,7 +1836,7 @@ myGameObject.physics.applyForce(<span class="hljs-number">1</span>, <span class=
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>x</span> <code class='quiet'>(any)</code>
+            <span class='code bold'>x</span> <code class='quiet'>(X-coordinate)</code>
 	    
           </div>
           
@@ -1783,7 +1844,7 @@ myGameObject.physics.applyForce(<span class="hljs-number">1</span>, <span class=
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>y</span> <code class='quiet'>(any)</code>
+            <span class='code bold'>y</span> <code class='quiet'>(Y-coordinate)</code>
 	    
           </div>
           
@@ -1791,7 +1852,68 @@ myGameObject.physics.applyForce(<span class="hljs-number">1</span>, <span class=
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>m</span> <code class='quiet'>(any)</code>
+            <span class='code bold'>m</span> <code class='quiet'>(Magnitude)</code>
+	    
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='physicsstep'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>step(x, y, m)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+
+  <p>Apply force to a physics object</p>
+
+ 
+  
+    <div class='pre p1 fill-light mt0'>step(x: X-coordinate, y: Y-coordinate, m: Magnitude)</div>
+   
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>x</span> <code class='quiet'>(X-coordinate)</code>
 	    
           </div>
           
@@ -1799,7 +1921,7 @@ myGameObject.physics.applyForce(<span class="hljs-number">1</span>, <span class=
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>X-coordinate</span> <code class='quiet'>(x)</code>
+            <span class='code bold'>y</span> <code class='quiet'>(Y-coordinate)</code>
 	    
           </div>
           
@@ -1807,15 +1929,7 @@ myGameObject.physics.applyForce(<span class="hljs-number">1</span>, <span class=
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>Y-coordinate</span> <code class='quiet'>(y)</code>
-	    
-          </div>
-          
-        </div>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>Magnitude</span> <code class='quiet'>(m)</code>
+            <span class='code bold'>m</span> <code class='quiet'>(Magnitude)</code>
 	    
           </div>
           
@@ -1927,32 +2041,8 @@ myGameObject.physics.applyForce(<span class="hljs-number">1</span>, <span class=
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>directionalOnly</span> <code class='quiet'>(any)</code>
-	    
-          </div>
-          
-        </div>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>horizontalOnly</span> <code class='quiet'>(any)</code>
-	    
-          </div>
-          
-        </div>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>verticalOnly</span> <code class='quiet'>(any)</code>
-	    
-          </div>
-          
-        </div>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>only</span> <code class='quiet'>(directionalOnly)</code>
-	    includes directional buttons. Default = false
+            <span class='code bold'>directionalOnly</span> <code class='quiet'>(directionalOnly)</code>
+	    Only directional buttons. Default = false
 
           </div>
           
@@ -1960,8 +2050,8 @@ myGameObject.physics.applyForce(<span class="hljs-number">1</span>, <span class=
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>only</span> <code class='quiet'>(horizontalOnly)</code>
-	    includes horizontal directional buttons. Default = false
+            <span class='code bold'>horizontalOnly</span> <code class='quiet'>(horizontalOnly)</code>
+	    Only horizontal directional buttons. Default = false
 
           </div>
           
@@ -1969,8 +2059,8 @@ myGameObject.physics.applyForce(<span class="hljs-number">1</span>, <span class=
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>only</span> <code class='quiet'>(verticalOnly)</code>
-	    includes verticalOnly directional buttons. Default = false
+            <span class='code bold'>verticalOnly</span> <code class='quiet'>(verticalOnly)</code>
+	    Only vertical directional buttons. Default = false
 
           </div>
           
@@ -2051,32 +2141,8 @@ myGameObject.physics.applyForce(<span class="hljs-number">1</span>, <span class=
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>directionalOnly</span> <code class='quiet'>(any)</code>
-	    
-          </div>
-          
-        </div>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>horizontalOnly</span> <code class='quiet'>(any)</code>
-	    
-          </div>
-          
-        </div>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>verticalOnly</span> <code class='quiet'>(any)</code>
-	    
-          </div>
-          
-        </div>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>only</span> <code class='quiet'>(directionalOnly)</code>
-	    includes directional buttons. Default = false
+            <span class='code bold'>directionalOnly</span> <code class='quiet'>(directionalOnly)</code>
+	    Only directional buttons. Default = false
 
           </div>
           
@@ -2084,8 +2150,8 @@ myGameObject.physics.applyForce(<span class="hljs-number">1</span>, <span class=
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>only</span> <code class='quiet'>(horizontalOnly)</code>
-	    includes horizontal directional buttons. Default = false
+            <span class='code bold'>horizontalOnly</span> <code class='quiet'>(horizontalOnly)</code>
+	    Only horizontal directional buttons. Default = false
 
           </div>
           
@@ -2093,8 +2159,8 @@ myGameObject.physics.applyForce(<span class="hljs-number">1</span>, <span class=
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>only</span> <code class='quiet'>(verticalOnly)</code>
-	    includes verticalOnly directional buttons. Default = false
+            <span class='code bold'>verticalOnly</span> <code class='quiet'>(verticalOnly)</code>
+	    Only vertical directional buttons. Default = false
 
           </div>
           
@@ -2169,7 +2235,7 @@ myGameObject.physics.applyForce(<span class="hljs-number">1</span>, <span class=
   
  
   
-    <div class='pre p1 fill-light mt0'>worldToScreenPoint(transform: any, camera: any, The: transform, The: camera): any</div>
+    <div class='pre p1 fill-light mt0'>worldToScreenPoint(transform: transform, camera: camera): any</div>
    
   
   
@@ -2187,25 +2253,8 @@ myGameObject.physics.applyForce(<span class="hljs-number">1</span>, <span class=
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>transform</span> <code class='quiet'>(any)</code>
-	    
-          </div>
-          
-        </div>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>camera</span> <code class='quiet'>(any
-            = <code>currentScene.camera</code>)</code>
-	    
-          </div>
-          
-        </div>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>The</span> <code class='quiet'>(transform)</code>
-	    world point to calculate
+            <span class='code bold'>transform</span> <code class='quiet'>(transform)</code>
+	    The world point to calculate.
 
           </div>
           
@@ -2213,8 +2262,9 @@ myGameObject.physics.applyForce(<span class="hljs-number">1</span>, <span class=
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>The</span> <code class='quiet'>(camera)</code>
-	    camera to calculate screen point relative to. Default=currentScene.camera
+            <span class='code bold'>camera</span> <code class='quiet'>(camera
+            = <code>currentScene.camera</code>)</code>
+	    The camera to calculate screen point relative to. Default = currentScene.camera
 
           </div>
           
@@ -2229,7 +2279,7 @@ myGameObject.physics.applyForce(<span class="hljs-number">1</span>, <span class=
     
       <div class='py1 quiet mt1 prose-big'>Returns</div>
       <code>any</code>:
-        The screen position of a world coordinate relative to a given camera,
+        The screen position of a world coordinate relative to a given camera.
 
       
     

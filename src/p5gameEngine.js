@@ -294,19 +294,28 @@ class Physics
 		this.mass = mass;
 		this.gravityScale = gravityScale;
 
-		this.force = [0, 0];
+		/**
+		 * Force applied to the body in the current physics step.
+		 */
+		this.force = { x:0, y:0 };
 
 		/**
 		 * Apply force to a physics object
-		 * @param {x} X-coordinate
-		 * @param {y} Y-coordinate
-		 * @param {m} Magnitude
+		 * @param {X-coordinate} x
+		 * @param {Y-coordinate} y
+		 * @param {Magnitude} m
 		 */
 		this.applyForce = function(x, y, m)
 		{
 
 		}
 
+		/**
+		 * Apply force to a physics object
+		 * @param {X-coordinate} x
+		 * @param {Y-coordinate} y
+		 * @param {Magnitude} m
+		 */
 		this.step = function ()
 		{
 
@@ -315,6 +324,7 @@ class Physics
 	}
 	/**
 	 * Global gravity force. (Applied to every rigidbody)
+	 * \nDefault is 9.87
    */
 	 static gravity = 9.87;
 
@@ -322,8 +332,8 @@ class Physics
 	 * @returns physics object that ignores all external forces
 	 * Note: Kinematic objects are affected by internal forces
 	 * @example {
-	 * myGameObject.physics = Physics.kinematic()
-	 * myGameObject.physics.applyForce(1, 0, 10) // Object is affected
+	 * 	myGameObject.physics = Physics.kinematic()
+	 * 	myGameObject.physics.applyForce(1, 0, 10) // Object is affected
 	 * }
 	 */
 	static kinematic = function()
@@ -368,9 +378,9 @@ class ControlScheme
 	 *  // LShift = Button, B
 	 * 	// Space = Button, A
 	 * }
-	 * @param{directionalOnly} only includes directional buttons. Default = false
-	 * @param{horizontalOnly} only includes horizontal directional buttons. Default = false
-	 * @param{verticalOnly} only includes verticalOnly directional buttons. Default = false
+	 * @param{directionalOnly} directionalOnly Only directional buttons. Default = false
+	 * @param{horizontalOnly} horizontalOnly Only horizontal directional buttons. Default = false
+	 * @param{verticalOnly} verticalOnly Only vertical directional buttons. Default = false
 	 */
 	static wasd = function(directionalOnly, horizontalOnly, verticalOnly)
 	{
@@ -387,9 +397,9 @@ class ControlScheme
 	 *  // LShift = Button, B
 	 * 	// Space = Button, A
 	 * }
-	 * @param{directionalOnly} only includes directional buttons. Default = false
-	 * @param{horizontalOnly} only includes horizontal directional buttons. Default = false
-	 * @param{verticalOnly} only includes verticalOnly directional buttons. Default = false
+	 * @param{directionalOnly} directionalOnly Only directional buttons. Default = false
+	 * @param{horizontalOnly} horizontalOnly Only horizontal directional buttons. Default = false
+	 * @param{verticalOnly} verticalOnly Only vertical directional buttons. Default = false
 	 */
 	static arrows = function(directionalOnly, horizontalOnly, verticalOnly)
 	{
@@ -405,9 +415,9 @@ class ControlScheme
 
 
 /**
- * @returns The screen position of a world coordinate relative to a given camera,
- * @param{transform} The world point to calculate
- * @param{camera} The camera to calculate screen point relative to. Default=currentScene.camera
+ * @returns The screen position of a world coordinate relative to a given camera.
+ * @param{transform} transform The world point to calculate.
+ * @param{camera} camera The camera to calculate screen point relative to. Default = currentScene.camera
  */
 function worldToScreenPoint(transform, camera = currentScene.camera)
 {
